@@ -1,0 +1,9 @@
+<div>
+    <!-- Chat input for the user -->
+    <input type="text" #prompt>
+    <input type="button" (click)="getPrompt(prompt)" value="Submit Prompt">
+</div>
+
+<div id="prompt-res">
+    <h3>LLM Reply</h3>
+</div>
