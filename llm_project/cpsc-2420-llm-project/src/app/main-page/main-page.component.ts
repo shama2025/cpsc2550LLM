@@ -19,7 +19,7 @@ export class MainPageComponent implements OnInit {
     this.mainPageService.sendPrompt(prompt.value).subscribe((res:Response)=>{
       if(JSON.stringify(res)){
         console.log(JSON.stringify(res))
-        // this.promptText ? this.promptText.append(JSON.stringify(res)) : null;
+        this.promptText ? this.promptText.innerText = JSON.stringify(res) : null;
       }
     })
   }

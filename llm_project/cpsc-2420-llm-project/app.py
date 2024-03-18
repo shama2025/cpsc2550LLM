@@ -1,6 +1,7 @@
 """This will house the backend of the application"""
 
 from flask import Flask, request, Response
+from inference import run_inference
 from flask_cors import CORS
 
 
@@ -11,5 +12,6 @@ CORS(app)
 @app.route("/api/prompt-response")
 def api_login():
     prompt = request.args.get("prompt")
-    return {"Text" : prompt}
+    response = run_inference(prompt)
+    return {"Response" : response}
 
