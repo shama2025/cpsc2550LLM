@@ -1,9 +1,37 @@
-<div>
-    <!-- Chat input for the user -->
-    <input type="text" #prompt>
-    <input type="button" (click)="getPrompt(prompt)" value="Submit Prompt">
+<div id="nav-bar" class="nav-bar">
+    <nav>
+        <ul>
+            <li>
+                <select name="LLM Selection" id="llm-selection" class="llm-selection">
+                    <option value="">LLM Model</option>
+                    <option value="Model 1">Model 1</option>
+                    <option value="Model 2">Model 2</option>
+                    <option value="Model 3">Model 3</option>
+                </select>
+            </li>
+        </ul>
+    </nav>
+</div>
+<div class="chat-container">
+
+<!-- Prompt input for the user -->
+<div class="user-input">
+    <input type="text" #prompt class="user-prompt" placeholder="Type your prompt...">
 </div>
 
-<div id="prompt-res">
-    <h3>LLM Reply</h3>
+    <!-- Chat input for the user -->
+    <div class="user-input">
+        <input type="text" #query class="user-prompt" placeholder="Type your message...">
+        <button class="submit-button" (click)="getPrompt(prompt,query)">Send</button>
+    </div>
+
+    <!-- Chat output for LLM's response -->
+    <div id="prompt-res" class="chat-output">
+        <h3 class="llm-response-heading">LLM Response</h3>
+        <div class="chat-bubble">
+            <div class="message" [innerHTML]="llmReply !== null ? llmReply : ''">
+                <!-- Insert LLM's response here -->
+            </div>
+        </div>
+    </div>
 </div>

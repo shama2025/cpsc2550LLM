@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MainPageServiceService } from '../services/main-page-service.service';
+import { query } from '@angular/animations';
 
 @Component({
   selector: 'app-main-page',
@@ -13,13 +14,13 @@ export class MainPageComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  promptText = document.getElementById("prompt-res")
-
-  getPrompt(prompt:HTMLInputElement){
-    this.mainPageService.sendPrompt(prompt.value).subscribe((res:Response)=>{
+  llmReply = ''
+  getPrompt(prompt:HTMLInputElement, query:HTMLInputElement){
+    this.mainPageService.sendPrompt(prompt.value,query.value).subscribe((res:Response)=>{
       if(JSON.stringify(res)){
         console.log(JSON.stringify(res))
-        this.promptText ? this.promptText.innerText = JSON.stringify(res) : null;
+        let response = JSON.stringify(res) //Upadte this to become a response object and not a JSON string
+        this.llmReply = response
       }
     })
   }
