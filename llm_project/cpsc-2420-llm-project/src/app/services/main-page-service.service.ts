@@ -11,8 +11,8 @@ export class MainPageServiceService {
 
   url:string = ""
 
-  sendPrompt(prompt:string, query:string):Observable<any>{
-    this.url = `${environment.apiBaseUrl}/api/prompt-response?prompt=${prompt}&query=${query}`
+  sendPrompt(prompt:string, query:string, llmSelect:number):Observable<any>{
+    this.url = `${environment.apiBaseUrl}/api/prompt-response?prompt=${prompt}&query=${query}&llmSelect=${llmSelect}`
     return this.http.get(this.url)
   }
 }

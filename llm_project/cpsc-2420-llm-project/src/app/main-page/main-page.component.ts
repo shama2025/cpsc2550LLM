@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MainPageServiceService } from '../services/main-page-service.service';
-import { query } from '@angular/animations';
 
 @Component({
   selector: 'app-main-page',
@@ -15,8 +14,9 @@ export class MainPageComponent implements OnInit {
   }
 
   llmReply = ''
-  getPrompt(prompt:HTMLInputElement, query:HTMLInputElement){
-    this.mainPageService.sendPrompt(prompt.value,query.value).subscribe((res:Response)=>{
+  getPrompt(prompt:HTMLInputElement, query:HTMLInputElement, llmSelect:HTMLSelectElement){
+    console.log(llmSelect.value)
+    this.mainPageService.sendPrompt(prompt.value,query.value,parseInt(llmSelect?.value)).subscribe((res:Response)=>{
       if(JSON.stringify(res)){
         console.log(JSON.stringify(res))
         let response = JSON.stringify(res) //Upadte this to become a response object and not a JSON string

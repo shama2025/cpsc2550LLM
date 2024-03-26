@@ -1,6 +1,6 @@
 """This will house the backend of the application"""
 
-from flask import Flask, request, Response
+from flask import Flask, request
 from inference import run_inference
 from flask_cors import CORS
 
@@ -13,4 +13,8 @@ CORS(app)
 def api_login():
     prompt = request.args.get("prompt")
     query = request.args.get("query")
-    return {"Response": run_inference(prompt,query)} #Update this to become a Response instead of hard coded json
+    llm_select = request.args.get("llmSelect")
+
+    if int(llm_select) == 0:
+        llm_select = '1'
+    return {"Response": run_inference(prompt,query,int(llm_select))} #Update this to become a Response instead of hard coded json
